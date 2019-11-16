@@ -18,19 +18,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_average_of_products(self):
-    #     average_of = {}
-    #     for product in Product.objects.all():
-    #         average_of[product.pk] = self.get_average(product.reviews.all())
-    #     return average_of
-    #
-    # def get_star_of_products(self, products):
-    #     star_of = {}
-    #     for product in products:
-    #         star_of[product.pk] = self.get_star_of_product(self.get_average(product.reviews.all()))
-    #     return star_of
-
-
     def get_average(self):
         reviews = self.reviews.all()
         if reviews:

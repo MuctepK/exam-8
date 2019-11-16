@@ -1,0 +1,112 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "IPhone 10 128GB BLACK",
+    "category": "electronics",
+    "description": "",
+    "img": "product_pics/I80W1Q0_I8CmOeC.png"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "\u0421\u043a\u043e\u0432\u043e\u0440\u043e\u0434\u0430 c \u043a\u0430\u043c\u0435\u043d\u043d\u043e\u0433\u043e \u043f\u043e\u043a\u0440\u044b\u0442\u0438\u044f",
+    "category": "kitchen",
+    "description": "",
+    "img": ""
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "AOC 18,5\" E970SWN, LED, BLACK 1366 x 768 16:9 HD; 100000000:1; 250cd/m2; 5ms",
+    "category": "electronics",
+    "description": "Lorem Text rrtertret",
+    "img": ""
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 10,
+  "fields": {
+    "name": "Blank Product",
+    "category": "other",
+    "description": "",
+    "img": ""
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "product": 2,
+    "text": "Very good tovar",
+    "mark": "2.20"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "Very good",
+    "mark": "3.20"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 3,
+  "fields": {
+    "author": 1,
+    "product": 3,
+    "text": "HAHAHAHA",
+    "mark": "1.20"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 7,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "r;terl;rkrlketl;e",
+    "mark": "1.00"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 8,
+  "fields": {
+    "author": 4,
+    "product": 1,
+    "text": "VERY BAD :(",
+    "mark": "1.01"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 9,
+  "fields": {
+    "author": 4,
+    "product": 2,
+    "text": "HOROWO",
+    "mark": "5.00"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 10,
+  "fields": {
+    "author": 4,
+    "product": 3,
+    "text": "NU tak sebe",
+    "mark": "2.50"
+  }
+}
+]
