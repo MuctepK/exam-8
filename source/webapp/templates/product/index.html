@@ -17,9 +17,12 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.get_category_display }} сом</p>
-                        <a href=""
+                        <p class="card-text">{{ product.get_category_display }}</p>
+                        <a href="{% url 'webapp:detail_product' product.pk %}"
                            class="btn btn-primary">Посмотреть</a>
+                        <a href="{% url 'webapp:update_product' product.pk %}" class="btn btn-info">Изменить</a>
+                        <a href="{% url 'webapp:delete_product' product.pk %}" class="btn btn-danger">Удалить</a>
+
                     </div>
                 </div>
             </div>

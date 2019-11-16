@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    Изменить товар
+{% endblock %}
+{% block content %}
+    <h1>Изменение Товара </h1>
+     <form method="POST">
+    {% include 'partial/form.html'%}
+     <input type="submit" value="Изменить" class="btn text-center btn-primary">
+    </form>
+{% endblock %}
