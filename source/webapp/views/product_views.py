@@ -34,6 +34,7 @@ class ProductListView(ListView):
             return round(total/len(reviews), 2)
         return 0
 
+
 class ProductDetailView(DetailView):
     model = Product
     context_object_name = 'product'
@@ -44,6 +45,7 @@ class ProductDetailView(DetailView):
         reviews = self.object.reviews.all()
         context['reviews'] = reviews
         context['average'] = self.get_average(reviews)
+        context['can_edit'] = self.can_edit(reviews)
         return context
 
     def get_average(self,reviews):
@@ -51,6 +53,11 @@ class ProductDetailView(DetailView):
             total = sum([review.mark for review in reviews])
             return round(total/len(reviews),2)
         return 0
+
+    def can_edit(self, reviews):
+        return {review: review.author == self.request.user or
+                self.request.user.has_perm('webapp.change_review')
+                for review in reviews}
 
 
 class ProductCreateView(PermissionRequiredMixin, CreateView):
