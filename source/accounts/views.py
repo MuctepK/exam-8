@@ -50,10 +50,5 @@ class UserChangePasswordView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.get_object() == self.request.user
 
-    # def form_valid(self, form):
-    #     user = form.save()
-    #     login(self.request, user)
-    #     return HttpResponseRedirect(self.get_success_url())
-
     def get_success_url(self):
         return reverse('accounts:login')

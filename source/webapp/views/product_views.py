@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
@@ -51,25 +52,32 @@ class ProductDetailView(DetailView):
             return round(total/len(reviews),2)
         return 0
 
-class ProductCreateView(CreateView):
+
+class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'product/create.html'
+    permission_required = 'webapp.add_product'
+    permission_denied_message = 'Доступ запрещен'
 
     def get_success_url(self):
         return reverse('webapp:detail_product', kwargs={'pk': self.object.pk})
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'product/update.html'
+    permission_required = 'webapp.change_product'
+    permission_denied_message = 'Доступ запрещен'
 
     def get_success_url(self):
         return reverse('webapp:detail_product', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(PermissionRequiredMixin,DeleteView):
     model = Product
     template_name = 'product/delete.html'
     success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_product'
+    permission_denied_message = 'Доступ запрещен'

@@ -17,6 +17,6 @@ class ReviewForm(forms.ModelForm):
 
     def clean_mark(self):
         mark = self.cleaned_data['mark']
-        if not 5.00 >= mark > 1.00:
+        if not 5.00 >= mark >= 1.00:
             raise(ValidationError("Оценка может принимать значение от 1.00 до 5.00"))
         return mark

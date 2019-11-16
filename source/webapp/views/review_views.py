@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -6,7 +7,7 @@ from webapp.forms import ReviewForm
 from webapp.models import Review, Product
 
 
-class ReviewCreateView(CreateView):
+class ReviewCreateView(LoginRequiredMixin, CreateView):
     form_class = ReviewForm
     model = Review
     template_name = 'review/create.html'
@@ -24,13 +25,30 @@ class ReviewCreateView(CreateView):
         return reverse('webapp:detail_product', kwargs={'pk':self.kwargs['product_pk']})
 
 
-class ReviewUpdateView(UpdateView):
+class ReviewUpdateView(PermissionRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewForm
     template_name = 'review/update.html'
+    success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.change_review'
+    permission_denied_message = 'Доступ запрещен'
+
+    def has_permission(self):
+        return super().has_permission() or self.is_author(self.request.user)
+
+    def is_author(self, user):
+        return self.get_object().author == user
 
 
-class ReviewDeleteView(DeleteView):
+class ReviewDeleteView(PermissionRequiredMixin, DeleteView):
     model = Review
     template_name = 'review/delete.html'
     success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_review'
+    permission_denied_message = 'Доступ запрещен'
+
+    def has_permission(self):
+        return super().has_permission() or self.is_author(self.request.user)
+
+    def is_author(self, user):
+        return self.get_object().author == user
