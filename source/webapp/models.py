@@ -18,6 +18,42 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    # def get_average_of_products(self):
+    #     average_of = {}
+    #     for product in Product.objects.all():
+    #         average_of[product.pk] = self.get_average(product.reviews.all())
+    #     return average_of
+    #
+    # def get_star_of_products(self, products):
+    #     star_of = {}
+    #     for product in products:
+    #         star_of[product.pk] = self.get_star_of_product(self.get_average(product.reviews.all()))
+    #     return star_of
+
+
+    def get_average(self):
+        reviews = self.reviews.all()
+        if reviews:
+            total = sum([review.mark for review in reviews])
+            return round(total/len(reviews), 2)
+        return 0
+
+    def get_star(self):
+        average = self.get_average()
+        number = []
+        for i in range(1, 6):
+            if average > 0.00:
+                if average - 1 < 0.00:
+                    number.append(str(average * 100))
+                    average -= 1
+                else:
+                    average -= 1
+                    number.append(str(100))
+            else:
+                number.append(str(0))
+        return number
+
+
 
 class Review(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='reviews')
@@ -27,3 +63,4 @@ class Review(models.Model):
 
     def __str__(self):
         return "Оценка {} к продукту {}".format(self.author, self.product)
+

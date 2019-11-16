@@ -86,3 +86,19 @@ h1, h2, h3 {
     margin-left: 120px;
 
 }
+.star {
+  font-size: 30px;
+  position: relative;
+  display: inline-block;
+}
+.star-under {
+  color: #ddd;
+  vertical-align: top;
+}
+.star-over {
+  color: #f80;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
