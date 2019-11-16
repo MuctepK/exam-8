@@ -17,6 +17,7 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
+                        <h3>Рейтинг: {{ average_of|get_item:product.pk }}</h3>
                         <p class="card-text">{{ product.get_category_display }}</p>
                         <a href="{% url 'webapp:detail_product' product.pk %}"
                            class="btn btn-primary">Посмотреть</a>
