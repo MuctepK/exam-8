@@ -14,7 +14,8 @@
                     {% endif %}
         </div>
                     <div class="card-body col-6">
-                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h3 class="card-title">{{ product.name }}</h3>
+                        <h6>Рейтинг товара по отзывам: {{ average }}</h6>
                         <p class="card-text">Категория: {{ product.get_category_display }}</p>
                         <p>Описание: <br>
                             {% if product.description %}
@@ -26,4 +27,7 @@
 
                     </div>
                 </div>
+    {% for review in reviews %}
+    {% include 'review/review_list.html' %}
+    {% endfor %}
 {% endblock %}

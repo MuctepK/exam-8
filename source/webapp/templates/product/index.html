@@ -22,7 +22,7 @@
                            class="btn btn-primary">Посмотреть</a>
                         <a href="{% url 'webapp:update_product' product.pk %}" class="btn btn-info">Изменить</a>
                         <a href="{% url 'webapp:delete_product' product.pk %}" class="btn btn-danger">Удалить</a>
-
+                        <a href="{% url 'webapp:create_review' product.pk %}" class="btn btn-default">Оставить отзыв</a>
                     </div>
                 </div>
             </div>

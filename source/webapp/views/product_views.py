@@ -16,6 +16,18 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     template_name = 'product/detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        reviews = self.object.reviews.all()
+        context['reviews'] = reviews
+        context['average'] = self.get_average(reviews)
+        return context
+
+    def get_average(self,reviews):
+        if reviews:
+            total = sum([review.mark for review in reviews])
+            return round(total/len(reviews),2)
+        return 0
 
 class ProductCreateView(CreateView):
     model = Product
