@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 CATEGORY_CHOICES = [
     ('other', 'Другое'),
     ('kitchen', 'Кухня'),
@@ -13,3 +14,10 @@ class Product(models.Model):
                                 default=CATEGORY_CHOICES[0][0])
     description = models.TextField(null=True, blank=True, verbose_name='Описание', max_length=512)
     img = models.ImageField(verbose_name='Картинка', null=True, blank=True, upload_to='product_pics')
+
+
+class Review(models.Model):
+    author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='reviews')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    text = models.TextField(verbose_name='Текст отзыва', max_length=512)
+    mark = models.DecimalField(verbose_name='Оценка', max_digits=3, decimal_places=2)
