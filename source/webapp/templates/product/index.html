@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Товары{% endblock %}
+{% block menu %}
+        <li class="nav-item"><a href="{% url 'webapp:create_product' %}" class="nav-link">Добавить товар</a></li>
+{% endblock %}
+{% block content %}
+    <h1 class="text-center">Товары</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col col-4">
+                <div class="card">
+                    {% if product.img %}
+                    <img src="{{ product.img }}"   class="card-img-top" alt="{{ product.name }}">
+                    {% else %}
+                    <img src="{% static 'img/no-photo.png' %}"  class="card-img-top" alt="{{ product.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.get_category_display }} сом</p>
+                        <a href=""
+                           class="btn btn-primary">Посмотреть</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
