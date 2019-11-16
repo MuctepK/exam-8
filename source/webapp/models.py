@@ -51,3 +51,18 @@ class Review(models.Model):
     def __str__(self):
         return "Оценка {} к продукту {}".format(self.author, self.product)
 
+
+    def get_star(self):
+        mark = self.mark
+        number = []
+        for i in range(1, 6):
+            if mark > 0.00:
+                if mark - 1 < 0.00:
+                    number.append(str(mark * 100))
+                    mark -= 1
+                else:
+                    mark -= 1
+                    number.append(str(100))
+            else:
+                number.append(str(0))
+        return number

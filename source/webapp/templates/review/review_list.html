@@ -2,6 +2,7 @@
 <h3>Отзыв от <a href="{% url 'accounts:user_detail' review.author.id %}">{{ review.author }}</a></h3>
     <p>Он(-а) думает что: {{ review.text }}</p>
 <p>Оценка: <b>{{ review.mark }}</b></p>
+{% include 'review/star.html' %}
     <p>Почта автора: {{ review.author.email }}</p>
     {% if review.author == request.user or perms.change_review %}
     <a href="{% url 'webapp:update_review' review.pk %}">Изменить отзыв</a>
